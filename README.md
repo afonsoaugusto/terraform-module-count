@@ -3,12 +3,14 @@
 ```sh
 Outputs:
 
-name = [
-  "teste-0",
-  "teste-1",
-]
+name = "default"
 property = [
-  "value1",
-  "value2",
+  [
+    "a-0-from-submodule",
+  ],
+  [
+    "b-0-from-submodule",
+    "b-1-from-submodule",
+  ],
 ]
 ```

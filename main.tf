@@ -1,7 +1,23 @@
-variable "propertys" {
-  type        = list(string)
+variable "name" {
+  type        = string
   description = "(optional) describe your variable"
-  default     = ["value1", "value2"]
+  default     = "default"
+}
+
+
+variable "propertys" {
+  type = list(object({
+    abc   = string
+    count = number
+  }))
+  description = "(optional) describe your variable"
+  default = [{
+    abc   = "a"
+    count = 1
+    }, {
+    abc   = "b"
+    count = 2
+  }]
 }
 
 module "teste" {
@@ -12,7 +28,7 @@ module "teste" {
 }
 
 output "name" {
-  value = module.teste.*.name
+  value = var.name
 }
 
 output "property" {

@@ -3,9 +3,20 @@ variable "name" {
   description = "(optional) describe your variable"
 }
 
+
 variable "property" {
-  type        = string
+  type = object({
+    abc   = string
+    count = number
+  })
   description = "(optional) describe your variable"
+
+}
+
+module "sub" {
+  source = "./sub-module"
+  count  = var.property.count
+  name   = format("%s-%d", var.property.abc, count.index)
 }
 
 output "name" {
@@ -13,5 +24,5 @@ output "name" {
 }
 
 output "property" {
-  value = var.property
+  value = module.sub.*.name
 }
